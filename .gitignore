@@ -6,6 +6,8 @@
 *.bak
 *.swp
 *~.nib
+.sass-cache/
+node_modules/
 public/app/design/install/
 public/app/etc/local.xml
 public/app/etc/local.xml.additional

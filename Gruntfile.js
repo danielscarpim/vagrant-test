@@ -3,6 +3,7 @@ module.exports = function(grunt) {
     var appDir = 'store/app/design/frontend/my-theme/default/';
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        
         compass: {
             dist: {
                 options: {
@@ -20,16 +21,46 @@ module.exports = function(grunt) {
             },
             livereload: {
                 files: [
-                    skinDir + 'scss/{,*/}*.scss'
+                    appDir + '**/*.{phtml,xml}',
+                    skinDir + 'scss/{,*/}*.scss',
+                    skinDir + 'js/{,*/}*.js'
                 ],
-                tasks: ['compass']
+                tasks: [
+                    'compass',
+                    'jshint'
+                ]
             }
         },
-        
+
+        jshint: {
+            all: [
+                'Gruntfile.js',
+                skinDir + ['js/{,*/}*.js', '!js/{,*/}*.min.js']
+            ]
+        },
+
+        uglify: {
+            dist: {
+                options: {
+                    mangle: false
+                },
+                files: {
+                    'store/skin/frontend/my-theme/default/js/scripts.min.js': [skinDir + 'js/scripts.js']
+                }
+            }
+        },
+
     });
+
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
     grunt.registerTask('default', [
         'compass',
+        'jshint',
+        'uglify'
     ]);
+
 };

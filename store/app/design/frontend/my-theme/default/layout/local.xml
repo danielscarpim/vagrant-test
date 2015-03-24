@@ -7,6 +7,10 @@
             <name>js/scripts.min.js</name>
             <params/>
         </action>
+        <action method="addItem">
+            <type>skin_css</type>
+            <name>css/test.css</name>
+        </action>
 	</reference>
 </default>
 </layout>

@@ -27,7 +27,8 @@ module.exports = function(grunt) {
                 ],
                 tasks: [
                     'compass',
-                    'jshint'
+                    'jshint',
+                    'copy'
                 ]
             }
         },
@@ -37,6 +38,17 @@ module.exports = function(grunt) {
                 'Gruntfile.js',
                 skinDir + ['js/{,*/}*.js', '!js/{,*/}*.min.js']
             ]
+        },
+
+        copy: {
+          main: {
+            files: [{
+                    expand: true,
+                    cwd: 'store/',
+                    src: ['**'],
+                    dest: 'public/'
+                }]
+          },
         },
 
         uglify: {
@@ -56,11 +68,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', [
         'compass',
         'jshint',
-        'uglify'
+        'uglify',
+        'copy'
     ]);
 
 };

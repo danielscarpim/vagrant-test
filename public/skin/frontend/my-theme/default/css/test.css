@@ -1,0 +1,6 @@
+/* line 1, ../scss/test.scss */
+h1 {
+  font-weight: bold; }
+  /* line 3, ../scss/test.scss */
+  h1 .test-class {
+    color: #ccc; }
